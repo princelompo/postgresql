@@ -2,7 +2,7 @@
 -- Schéma fil rouge : boutique en ligne
 -- ============================================
 
-DROP TABLE IF EXISTS order_items, orders, products, customers, categories CASCADE;
+DROP TABLE IF EXISTS order_items, orders, products, customers, categories;
 
 CREATE TABLE categories (
     id SERIAL PRIMARY KEY,
