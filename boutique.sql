@@ -1,8 +1,4 @@
--- ============================================
--- Schéma fil rouge : boutique en ligne
--- ============================================
-
-DROP TABLE IF EXISTS order_items, orders, products, customers, categories;
+-- DROP TABLE IF EXISTS order_items, orders, products, customers, categories;
 
 CREATE TABLE categories (
     id SERIAL PRIMARY KEY,
@@ -66,3 +62,20 @@ INSERT INTO order_items (order_id, product_id, quantite, prix_unitaire) VALUES
 (3, 3, 1, 89.90),
 (4, 5, 2, 39.90), (4, 6, 1, 19.99),
 (5, 2, 1, 25.50);
+
+-- EXEMPLE INNER JOIN
+SELECT 
+    c.id AS customer_id,
+    c.nom AS customer_name,
+    o.id AS order_id,
+    o.date_commande,
+    o.statut,
+    p.nom AS product_name
+FROM customers c
+INNER JOIN orders o ON c.id = o.customer_id
+INNER JOIN order_items oi ON o.id = oi.order_id
+INNER JOIN products p ON oi.product_id = p.id
+WHERE o.statut = 'payee'
+ORDER BY o.date_commande DESC;
+
+
